@@ -13,6 +13,7 @@ window.onload = function()
     var widthInBlocks = canvasWidth/blockSize;
     var heightInBlocks = canvasHeight/blockSize;
     var score;
+    var timeout;
     
 
 
@@ -66,7 +67,7 @@ window.onload = function()
             snakee.draw();
             applee.draw();
             
-            setTimeout(refreshCanvas,delay);
+            timeout= setTimeout(refreshCanvas,delay);
 
 
         }
@@ -90,8 +91,8 @@ window.onload = function()
        
         ctx.filText("GAME OVER", centreX,centreY-180);
         ctx.font = "bold 30px sans-serif";
-        ctx.strokeText("APPUYER SUR ESPACE POUR REJOUER", 5,30);
-        ctxfilText("APPUYER SUR ESPACE POUR REJOUER", 5,30);
+        ctx.strokeText("APPUYER SUR ESPACE POUR REJOUER", centreX,centreY-120);
+        ctxfilText("APPUYER SUR ESPACE POUR REJOUER", centreX,centreY-120);
         ctx.restore();
     }
 
@@ -100,6 +101,7 @@ window.onload = function()
         snakee = new Snake([[6,4], [5,4], [4,4], [3,4], [2,4]], "right");
         applee = new Apple([10,10]);
         score = 0;
+        clearTimeout(timeout);
         refreshCanvas()
     }
     function drawScore()
